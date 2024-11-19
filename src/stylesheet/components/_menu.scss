@@ -1,0 +1,55 @@
+@use '../abstracts/mixins';
+@use '../abstracts/functions';
+
+.menu {
+  display: none;
+  gap: 45px;
+  position: relative;
+  &--responsive {
+    animation: open-hamburger 200ms forwards;
+    background-color: rgb(2, 0, 36);
+    border-radius: 0 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    padding: 20px;
+    padding-left: 30px;
+    position: absolute;
+    right: 0px;
+    top: 55px;
+    transform-origin: top;
+    width: fit-content;
+    z-index: 99;
+    .menu__link {
+      padding: 15px;
+    }
+  }
+  &__burger-icon {
+    @include mixins.flex-col;
+    gap: 6px;
+    span {
+      background-color: functions.color(light);
+      height: 5px;
+      width: 35px;
+    }
+  }
+  @include mixins.media-breakpoint(min, laptop) {
+    display: flex;
+    &__burger-icon {
+      display: none;
+    }
+  }
+  @include mixins.media-breakpoint(min, desktop) {
+    gap: 100px;
+  }
+}
+
+@keyframes open-hamburger {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
